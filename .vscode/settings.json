@@ -1,10 +1,7 @@
 {
     "cSpell.words": [
-        "benar",
-        "dengan",
-        "GAMUKIS",
-        "Impor",
-        "Kanan",
-        "Selamat"
-    ]
+        "GAMUKIS"
+    ],
+    "chat.editing.autoAcceptDelay": 100,
+    "9router-for-github-copilot.serverUrl": "https://r5ygjmx.abc-tunnel.us/v1"
 }

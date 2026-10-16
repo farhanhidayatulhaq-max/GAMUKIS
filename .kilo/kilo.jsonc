@@ -1,0 +1,38 @@
+{
+  "$schema": "https://app.kilo.ai/config.json",
+  "name": "Kiko Strict Gamukis Scope Config",
+  "version": "1.0.0",
+  "workspace": {
+    "root": "C:\\Users\\LOQ\\Documents\\gamukis",
+    "restrictToRoot": true
+  },
+  "agent": {
+    "name": "Kiko",
+    "role": "Local File & Code Assistant",
+    "instructions": [
+      "Akses HANYA diperbolehkan di dalam direktori C:\\Users\\LOQ\\Documents\\gamukis dan seluruh sub-foldernya (C:\\Users\\LOQ\\Documents\\gamukis\\...).",
+      "Dilarang keras mengakses direktori induk/di luar folder gamukis.",
+      "Gunakan bahasa Indonesia yang ringkas dan jelas."
+    ]
+  },
+  "rules": {
+    "allowedPaths": [
+      "C:\\Users\\LOQ\\Documents\\gamukis\\**"
+    ],
+    "deniedPaths": [
+      "*",
+      "..\\**",
+      "C:\\Users\\LOQ\\Documents\\*",
+      "!C:\\Users\\LOQ\\Documents\\gamukis\\**"
+    ],
+    "ignorePaths": [
+      "node_modules/**",
+      ".git/**",
+      ".env*"
+    ],
+    "autoApprove": {
+      "readFiles": true,
+      "runSafeCommands": false
+    }
+  }
+}

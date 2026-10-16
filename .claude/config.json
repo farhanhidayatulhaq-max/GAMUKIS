@@ -1,0 +1,22 @@
+{
+  "apiProvider": "openai-compatible",
+  "baseURL": "http://127.0.0.1:20128/v1",
+  "apiKey": "sk-b16b5f329691c3d5-785zld-dc65aac0",
+  "agentsDir": "./.claude/agents",
+  "defaultAgent": "inspector",
+  "modelMappings": {
+    "inspector": "folder-inspector-combo",
+    "frontend": "fast-coder-combo",
+    "tilemap": "data-scaffold-combo",
+    "combat": "game-logic-combo",
+    "narrative": "narrative-creative-combo",
+    "architect": "architect-reviewer-combo",
+    "vision": "ui-vision-combo"
+  },
+  "options": {
+    "temperature": 0.2,
+    "maxTokens": 4096,
+    "timeout": 60000,
+    "stream": true
+  }
+}

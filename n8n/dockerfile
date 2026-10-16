@@ -1,0 +1,8 @@
+FROM n8nio/n8n:latest
+
+USER root
+RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN mkdir -p /data/exports
+
+USER node
+EXPOSE 5678

@@ -1,0 +1,31 @@
+# Dependensi lokal (wajib diabaikan agar tidak bentrok dengan container)
+node_modules
+
+# Logs & debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs
+*.log
+
+# Environment variables & kredensial rahasia
+.env
+.env.*
+!.env.example
+
+# Version control (Git)
+.git
+.gitignore
+
+# Folder/File Docker & IDE
+Dockerfile*
+docker-compose*
+.dockerignore
+.vscode
+.idea
+
+# Build output / temporary files
+dist
+build
+coverage
+.DS_Store

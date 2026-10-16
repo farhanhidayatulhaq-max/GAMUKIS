@@ -1,0 +1,28 @@
+flowchart TB
+  IN["Query + candidate chunks"] --> RT{"Modality router, deterministic"}
+  RT -->|"text, text+tables"| PL["Payload plan: compact tables, column projection"]
+  RT -->|"tables, tables+image"| PL
+  RT -->|"image, image+text, image+text+tables"| SG{"Text surrogate sufficient?"}
+  SG -->|"yes"| PL
+  SG -->|"no, or visual intent"| PX["Attach pixels, capped count"]
+  PL --> MG{"Model gate: vision needed?"}
+  PX --> MG
+  MG -->|"no"| CR["Combos Rules: existing 9Router combos"]
+  MG -->|"yes"| CR
+  CR --> AG["Agents"]
+  AG --> DM{"Domain / namespace"}
+  DM --> NS["frontend, backend, data, gamedev, ai-tools, plus shared"]
+  NS --> RV["Lexical-first retriever"]
+  CRAG["Corrective RAG: policy and limits"] -.-> RV
+  CACHE[("Cache: context pack, embeddings, text surrogates")] -.-> RV
+  RV --> PK["Token-budget packer + dedupe"]
+  PK --> G{"Confidence gate, no LLM"}
+  G -->|"high"| ANS["Answer"]
+  G -->|"middle"| EV["Cheap evaluator: short snippets, JSON"]
+  G -->|"empty or low"| WEB["Web Search Fallback: max 1x"]
+  EV -->|"correct"| RF["Refine, optional"]
+  EV -->|"ambiguous, max 1x"| QR["Query Rewriter"]
+  EV -->|"incorrect"| WEB
+  QR --> RV
+  WEB --> RF
+  RF --> ANS

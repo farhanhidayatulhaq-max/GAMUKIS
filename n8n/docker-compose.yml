@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  n8n-from-source:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: n8n_source_app
+    restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_HOST=localhost
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=http
+      - NODE_ENV=production
+      - WEBHOOK_URL=http://localhost:5678/
+      - N8N_PUBLIC_API_ENABLED=true
+    volumes:
+      - n8n_source_data:/root/.n8n
+      - ./exports:/data/exports
+
+    networks:
+      - my-ai-network
+
+volumes:
+  n8n_source_data:
+
+networks:
+  my-ai-network:
+    external: true

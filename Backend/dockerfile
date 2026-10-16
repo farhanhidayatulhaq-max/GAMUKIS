@@ -1,0 +1,20 @@
+# Gunakan Node.js versi LTS berbasis Alpine yang ringan
+FROM node:20-alpine
+
+# Tentukan folder kerja di dalam container
+WORKDIR /app
+
+# Salin file package.json dan package-lock.json terlebih dahulu (untuk efisiensi cache Docker)
+COPY package*.json ./
+
+# Install dependensi sesuai package-lock.json, termasuk socket.io
+RUN npm ci
+
+# Salin seluruh sisa file di folder backend ke dalam container
+COPY . .
+
+# Expose port backend Anda (misal 5000)
+EXPOSE 5000
+
+# Perintah untuk menjalankan backend
+CMD ["npm", "run", "dev"]
